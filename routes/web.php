@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -20,6 +21,11 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class, 'index']);
+
+Route::post('/upload', function(Request $request) {
+    $request->image->store('images', 'public');
+    return 'uploaded!';
+});
 
 Auth::routes();
 
